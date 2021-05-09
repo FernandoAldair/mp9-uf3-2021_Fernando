@@ -30,7 +30,6 @@ public class ClientTcpAdivina extends Thread {
 		Llista serverData = null;
 		Socket socket;
 
-
 		try {
 			socket = new Socket(InetAddress.getByName(hostname), port);
 			oInputS = new ObjectInputStream(socket.getInputStream());
@@ -58,8 +57,6 @@ public class ClientTcpAdivina extends Thread {
 				System.out.println(i);
 			}
 		}
-
-
 		List<Integer> num = new ArrayList<>();
 		for (int i = 0; i < 5; i++) {
 			num.add((int) (Math.random()*100+1));
@@ -69,7 +66,6 @@ public class ClientTcpAdivina extends Thread {
 	}
 
 	private void close(Socket socket){
-
 		try {
 			if(socket!=null && !socket.isClosed()){
 				if(!socket.isInputShutdown()){
