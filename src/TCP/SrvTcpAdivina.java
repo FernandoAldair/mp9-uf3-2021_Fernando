@@ -1,4 +1,4 @@
-package a6;
+package TCP;
 
 import a3.NombreSecret;
 
@@ -13,25 +13,22 @@ public class SrvTcpAdivina {
 /* Servidor TCP que genera un número perquè ClientTcpAdivina.java jugui a encertar-lo 
  * i on la comunicació dels diferents jugador passa per el Thread : ThreadServidorAdivina.java
  * */
-	
+
 	int port;
-	NombreSecret ns;
-	
+
 	public SrvTcpAdivina(int port ) {
 		this.port = port;
-		ns = new NombreSecret(100);
 	}
-	
+
 	public void listen() {
-		ServerSocket serverSocket = null;
-		Socket clientSocket = null;
-		
+		ServerSocket serverSocket;
+		Socket clientSocket;
+
 		try {
 			serverSocket = new ServerSocket(port);
-			while(true) { //esperar connexió del client i llançar thread
+			while(true) {
 				clientSocket = serverSocket.accept();
-				//Llançar Thread per establir la comunicació
-				ThreadSevidorAdivina FilServidor = new ThreadSevidorAdivina(clientSocket, ns);
+				ThreadSevidorAdivina FilServidor = new ThreadSevidorAdivina(clientSocket);
 				Thread client = new Thread(FilServidor);
 				client.start();
 			}
@@ -41,16 +38,8 @@ public class SrvTcpAdivina {
 	}
 
 	public static void main(String[] args) {
-		/*if (args.length != 1) {
-            System.err.println("Usage: java SrvTcpAdivina <port number>");
-            System.exit(1);
-        }*/
- 
-        
-        //int port = Integer.parseInt(args[0]);
-        SrvTcpAdivina srv = new SrvTcpAdivina(5558);
-        srv.listen();
+		SrvTcpAdivina srv = new SrvTcpAdivina(5558);
+		srv.listen();
 
 	}
-
 }

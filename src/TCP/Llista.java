@@ -1,4 +1,4 @@
-package a6;
+package TCP;
 
 import java.io.Serializable;
 import java.util.List;
@@ -28,4 +28,5 @@ public class Llista implements Serializable {
     public void setNumberList(List<Integer> numberList) {
         this.numberList = numberList;
     }
+
 }
